@@ -10,6 +10,10 @@ import UIKit
 
 
 class MyView: UIView {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
@@ -23,7 +27,10 @@ class MyView: UIView {
 }
 
 class MyView2: UIView {
-    
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
@@ -37,6 +44,10 @@ class MyView2: UIView {
 }
 
 class MyView3: UIView {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
@@ -50,6 +61,10 @@ class MyView3: UIView {
 }
 
 class MyScrollView: UIScrollView {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     // super.touchesを呼んでもイベントが通らないい
@@ -100,6 +115,12 @@ class ViewController: UIViewController {
     view2.frame = .init(x: 100, y: 700, width: 200, height: 200)
     view2.backgroundColor = .orange
     
+    // Geesture入れるとendが呼ばれなくなる
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+    // falseにするとendも呼ばれる
+    gesture.cancelsTouchesInView = false
+    view2.addGestureRecognizer(gesture)
+    
     view.addSubview(view2)
     
     view3.frame = .init(x: 50, y: 50, width: 100, height: 100)
@@ -109,6 +130,10 @@ class ViewController: UIViewController {
 
   }
 
+  
+  @objc func tap() {
+    print("tap")
+  }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
