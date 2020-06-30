@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93A9C0CFB97CDD6B7C663AEB /* Pods_touch_event_practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4115948288690C4A82647F9 /* Pods_touch_event_practice.framework */; };
 		D44331B524AA28290027F8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B424AA28290027F8FC /* AppDelegate.swift */; };
 		D44331B724AA28290027F8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B624AA28290027F8FC /* SceneDelegate.swift */; };
 		D44331B924AA28290027F8FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B824AA28290027F8FC /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49723FE1CD68D3CE675C0D62 /* Pods-touch-event-practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-event-practice.release.xcconfig"; path = "Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice.release.xcconfig"; sourceTree = "<group>"; };
+		AC080105AC52A9591C362B5C /* Pods-touch-event-practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-event-practice.debug.xcconfig"; path = "Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice.debug.xcconfig"; sourceTree = "<group>"; };
+		B4115948288690C4A82647F9 /* Pods_touch_event_practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_touch_event_practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44331B124AA28290027F8FC /* touch-event-practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "touch-event-practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44331B424AA28290027F8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D44331B624AA28290027F8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A9C0CFB97CDD6B7C663AEB /* Pods_touch_event_practice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73D7AB476E2EE89163827C07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4115948288690C4A82647F9 /* Pods_touch_event_practice.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D44331A824AA28290027F8FC = {
 			isa = PBXGroup;
 			children = (
 				D44331B324AA28290027F8FC /* touch-event-practice */,
 				D44331B224AA28290027F8FC /* Products */,
+				F7F451BBEDC5869A4377967A /* Pods */,
+				73D7AB476E2EE89163827C07 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = "touch-event-practice";
 			sourceTree = "<group>";
 		};
+		F7F451BBEDC5869A4377967A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC080105AC52A9591C362B5C /* Pods-touch-event-practice.debug.xcconfig */,
+				49723FE1CD68D3CE675C0D62 /* Pods-touch-event-practice.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D44331C524AA282A0027F8FC /* Build configuration list for PBXNativeTarget "touch-event-practice" */;
 			buildPhases = (
+				487C3DA416F0BECA84D5C947 /* [CP] Check Pods Manifest.lock */,
 				D44331AD24AA28290027F8FC /* Sources */,
 				D44331AE24AA28290027F8FC /* Frameworks */,
 				D44331AF24AA28290027F8FC /* Resources */,
+				7891BAD7A99D5CC8194EAABE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		487C3DA416F0BECA84D5C947 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-touch-event-practice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7891BAD7A99D5CC8194EAABE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D44331AD24AA28290027F8FC /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		D44331C624AA282A0027F8FC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC080105AC52A9591C362B5C /* Pods-touch-event-practice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +369,7 @@
 		};
 		D44331C724AA282A0027F8FC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49723FE1CD68D3CE675C0D62 /* Pods-touch-event-practice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
