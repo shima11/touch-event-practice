@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MyView: UIView {
+class MyView1: UIView {
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -86,9 +86,9 @@ class MyScrollView: UIScrollView {
 //  }
 }
 
-class ViewController: UIViewController {
+class ViewController1: UIViewController {
 
-  let view1 = MyView()
+  let view1 = MyView1()
   let view2 = MyView2()
   let view3 = MyView3()
 
@@ -97,7 +97,8 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    
+    title = "View"
+      
     scrollView.frame = .init(x: 100, y: 100, width: 300, height: 500)
     scrollView.backgroundColor = .lightGray
     view.addSubview(scrollView)
@@ -127,6 +128,155 @@ class ViewController: UIViewController {
     view3.backgroundColor = .green
     
     view2.addSubview(view3)
+
+  }
+
+  
+  @objc func tap() {
+    print("tap")
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches began", String(describing: type(of: self)))
+    super.touchesBegan(touches, with: event)
+    print("touches began", String(describing: type(of: self)))
+  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    super.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+
+}
+
+
+import AsyncDisplayKit
+
+class MyNode1: ASDisplayNode {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches began", String(describing: type(of: self)))
+    super.touchesBegan(touches, with: event)
+    print("touches began", String(describing: type(of: self)))
+  }
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    super.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+}
+
+class MyNode2: ASDisplayNode {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches began", String(describing: type(of: self)))
+    super.touchesBegan(touches, with: event)
+    print("touches began", String(describing: type(of: self)))
+  }
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    super.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+}
+
+class MyNode3: ASDisplayNode {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches began", String(describing: type(of: self)))
+    super.touchesBegan(touches, with: event)
+    print("touches began", String(describing: type(of: self)))
+  }
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    super.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+}
+
+class MyScrollNode: ASScrollNode {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches began", String(describing: type(of: self)))
+    // super.touchesを呼んでもイベントが通らないい
+//    super.touchesBegan(touches, with: event)
+    view.superview?.touchesBegan(touches, with: event)
+    print("touches began", String(describing: type(of: self)))
+  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    if !view.isDragging {
+      view.next?.touchesEnded(touches, with: event)
+    }
+    super.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+//  override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
+//    return true
+//  }
+
+}
+
+class ViewController2: ASViewController<ASDisplayNode> {
+
+  let view1 = MyNode1()
+  let view2 = MyNode2()
+  let view3 = MyNode3()
+
+  let scrollNode = MyScrollNode()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    title = "Node"
+    
+    scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 500)
+    scrollNode.view.backgroundColor = .lightGray
+//    view.addSubview(scrollNode.view)
+    view.addSubnode(scrollNode)
+    
+    scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
+    scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
+    scrollNode.view.canCancelContentTouches = false
+
+    view1.frame = .init(x: 100, y: 100, width: 200, height: 300)
+    view1.backgroundColor = .darkGray
+//    view1.isLayerBacked = true // isLayerBacked = trueにするとhittestが呼ばれなくなる
+//    scrollNode.view.addSubview(view1.view)
+    
+    scrollNode.automaticallyManagesContentSize = true
+    scrollNode.addSubnode(view1)
+    
+    view2.frame = .init(x: 100, y: 700, width: 200, height: 200)
+    view2.backgroundColor = .orange
+    
+    // Geesture入れるとendが呼ばれなくなる
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+    // falseにするとendも呼ばれる
+    gesture.cancelsTouchesInView = false
+    view2.view.addGestureRecognizer(gesture)
+    
+//    view.addSubview(view2.view)
+    view.addSubnode(view2)
+    
+    view3.frame = .init(x: 50, y: 50, width: 100, height: 100)
+    view3.backgroundColor = .green
+    
+    view2.view.addSubview(view3.view)
 
   }
 
