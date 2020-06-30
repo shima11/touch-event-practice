@@ -237,7 +237,9 @@ class ViewController2: ASViewController<ASDisplayNode> {
   let view2 = MyNode2()
   let view3 = MyNode3()
 
-  let scrollNode = MyScrollNode()
+  let scrollNode = MyScrollNode { () -> UIView in
+    MyScrollView()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
