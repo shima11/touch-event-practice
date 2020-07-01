@@ -181,6 +181,17 @@ class _MyView2: UIView {
 }
 
 class MyNode2: ASDisplayNode {
+  
+  let value: String
+  
+  init(value: String) {
+    self.value = value
+    super.init()
+    setViewBlock { () -> UIView in
+      _MyView2()
+    }
+  }
+  
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -265,9 +276,10 @@ class ViewController2: ASViewController<ASDisplayNode> {
 
   let view1 = MyNode1()
   // TODO: MyNode2がcustomInitializerのときにどうするか
-  let view2 = MyNode2 { () -> UIView in
-    _MyView2()
-  }
+//  let view2 = MyNode2 { () -> UIView in
+//    _MyView2()
+//  }
+  let view2 = MyNode2(value: "hoge")
   let view3 = MyNode3()
 
   let scrollNode = ASCollectionNode { () -> UIView in
@@ -277,10 +289,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "Node"
-    
-    view.backgroundColor = .red
-    
+    title = "Node"      
     
     scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 300)
     scrollNode.view.backgroundColor = .lightGray
