@@ -169,7 +169,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/GlossButtonNode/GlossButtonNode.framework"
-  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer/iOS/RevealServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TextureBridging/TextureBridging.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TextureSwiftSupport/TextureSwiftSupport.framework"

@@ -201,6 +201,8 @@ public final class _GlossButtonFilledSurfaceNode: ASDisplayNode, _GlossButtonSur
   
   public override func layout() {
     super.layout()
+
+    lock(); defer { unlock() }
     
     overlayLayer.frame = surfaceGradientLayer.bounds
     
@@ -261,8 +263,15 @@ public final class _GlossButtonFilledSurfaceNode: ASDisplayNode, _GlossButtonSur
 
       list[bottomLeft] = list[bottomLeft] ?? .init()
       list[bottomLeft]?.insert(.bottomLeft)
-
-      let path = UIBezierPath(rect: rect)
+      
+      let path: UIBezierPath
+      
+      // adjust overlapping count according to number of paths to append
+      if list.count % 2 == 0 {
+        path = .init(rect: rect) 
+      } else {
+        path = .init() 
+      } 
       
       for l in list {
         path.append(.init(
@@ -354,7 +363,7 @@ public final class _GlossButtonFilledSurfaceNode: ASDisplayNode, _GlossButtonSur
   }
   
   public func setStyle(_ filledStyle: Style) {
-    
+    lock(); defer { unlock() }
     self.currentStyle = filledStyle
     setNeedsLayout()
   }

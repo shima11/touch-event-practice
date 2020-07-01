@@ -5,7 +5,7 @@ target 'touch-event-practice' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Reveal-SDK'
+  pod 'Reveal-SDK', :configurations => ['Debug']
   
   # Pods for touch-event-practice
   # Commit hash related in https://github.com/eure/pairs-ios/pull/4961
