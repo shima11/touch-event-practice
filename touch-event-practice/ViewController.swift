@@ -187,23 +187,27 @@ class MyNode2: ASDisplayNode {
   init(value: String) {
     self.value = value
     super.init()
-    setViewBlock { () -> UIView in
-      _MyView2()
-    }
+//    setViewBlock { () -> UIView in
+//      _MyView2()
+//    }
+
   }
   
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
-    return super.hitTest(point, with: event)
+    return view.superview?.hitTest(point, with: event)
+//    return super.hitTest(point, with: event)
   }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
-    super.touchesBegan(touches, with: event)
+    view.superview?.touchesBegan(touches, with: event)
     print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
-    super.touchesEnded(touches, with: event)
+//    super.touchesEnded(touches, with: event)
+    // TODO: view.superviewはVCのViewなのにtouchイベントが届かない←hittestをsuperviewに対してしていなかった
+    view.superview?.touchesEnded(touches, with: event)
     print("touches end", String(describing: type(of: self)))
   }
 }
@@ -289,7 +293,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "Node"      
+    title = "Node"
     
     scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 300)
     scrollNode.view.backgroundColor = .lightGray
