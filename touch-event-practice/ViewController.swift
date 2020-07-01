@@ -75,10 +75,11 @@ class MyScrollView: UIScrollView {
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
-    if !isDragging {
-      next?.touchesEnded(touches, with: event)
-    }
-    super.touchesEnded(touches, with: event)
+//    if !isDragging {
+//      next?.touchesEnded(touches, with: event)
+//    }
+//    super.touchesEnded(touches, with: event)
+    superview?.touchesEnded(touches, with: event)
     print("touches end", String(describing: type(of: self)))
   }
 //  override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
@@ -99,7 +100,7 @@ class ViewController1: UIViewController {
 
     title = "View"
       
-    scrollView.frame = .init(x: 100, y: 100, width: 300, height: 500)
+    scrollView.frame = .init(x: 100, y: 100, width: 300, height: 300)
     scrollView.backgroundColor = .lightGray
     view.addSubview(scrollView)
     
@@ -108,12 +109,12 @@ class ViewController1: UIViewController {
     scrollView.canCancelContentTouches = false
     
     
-    view1.frame = .init(x: 100, y: 100, width: 200, height: 300)
+    view1.frame = .init(x: 100, y: 100, width: 200, height: 200)
     view1.backgroundColor = .darkGray
     
     scrollView.addSubview(view1)
     
-    view2.frame = .init(x: 100, y: 700, width: 200, height: 200)
+    view2.frame = .init(x: 100, y: 400, width: 200, height: 200)
     view2.backgroundColor = .orange
     
     // Geesture入れるとendが呼ばれなくなる
@@ -205,6 +206,9 @@ class MyNode3: ASDisplayNode {
 }
 
 class MyScrollNode: ASScrollNode {
+  
+  // TODO: ここらへん全然呼ばれない
+  
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -212,8 +216,8 @@ class MyScrollNode: ASScrollNode {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     // super.touchesを呼んでもイベントが通らないい
-//    super.touchesBegan(touches, with: event)
-    view.superview?.touchesBegan(touches, with: event)
+    super.touchesBegan(touches, with: event)
+//    view.superview?.touchesBegan(touches, with: event)
     print("touches began", String(describing: type(of: self)))
   }
   
@@ -246,7 +250,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
 
     title = "Node"
     
-    scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 500)
+    scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 300)
     scrollNode.view.backgroundColor = .lightGray
 //    view.addSubview(scrollNode.view)
     view.addSubnode(scrollNode)
@@ -255,7 +259,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
     scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
     scrollNode.view.canCancelContentTouches = false
 
-    view1.frame = .init(x: 100, y: 100, width: 200, height: 300)
+    view1.frame = .init(x: 100, y: 100, width: 200, height: 200)
     view1.backgroundColor = .darkGray
 //    view1.isLayerBacked = true // isLayerBacked = trueにするとhittestが呼ばれなくなる
 //    scrollNode.view.addSubview(view1.view)
@@ -263,7 +267,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
     scrollNode.automaticallyManagesContentSize = true
     scrollNode.addSubnode(view1)
     
-    view2.frame = .init(x: 100, y: 700, width: 200, height: 200)
+    view2.frame = .init(x: 100, y: 400, width: 200, height: 200)
     view2.backgroundColor = .orange
     
     // Geesture入れるとendが呼ばれなくなる
