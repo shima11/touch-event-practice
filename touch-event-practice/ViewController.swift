@@ -171,6 +171,15 @@ class MyNode1: ASDisplayNode {
   }
 }
 
+
+class _MyView2: UIView {
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    superview?.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+}
+
 class MyNode2: ASDisplayNode {
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
@@ -235,20 +244,43 @@ class MyScrollNode: ASScrollNode {
 
 }
 
+class MyCollectionView: ASCollectionView {
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    return super.hitTest(point, with: event)
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches began", String(describing: type(of: self)))
+    superview?.touchesBegan(touches, with: event)
+    print("touches began", String(describing: type(of: self)))
+  }
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    superview?.touchesEnded(touches, with: event)
+    print("touches end", String(describing: type(of: self)))
+  }
+}
+
 class ViewController2: ASViewController<ASDisplayNode> {
 
   let view1 = MyNode1()
-  let view2 = MyNode2()
+  // TODO: MyNode2がcustomInitializerのときにどうするか
+  let view2 = MyNode2 { () -> UIView in
+    _MyView2()
+  }
   let view3 = MyNode3()
 
-  let scrollNode = MyScrollNode { () -> UIView in
-    MyScrollView()
+  let scrollNode = ASCollectionNode { () -> UIView in
+    MyCollectionView(frame: .zero, collectionViewLayout: .init())
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = "Node"
+    
+    view.backgroundColor = .red
+    
     
     scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 300)
     scrollNode.view.backgroundColor = .lightGray
@@ -264,7 +296,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
 //    view1.isLayerBacked = true // isLayerBacked = trueにするとhittestが呼ばれなくなる
 //    scrollNode.view.addSubview(view1.view)
     
-    scrollNode.automaticallyManagesContentSize = true
+//    scrollNode.automaticallyManagesContentSize = true
     scrollNode.addSubnode(view1)
     
     view2.frame = .init(x: 100, y: 400, width: 200, height: 200)
