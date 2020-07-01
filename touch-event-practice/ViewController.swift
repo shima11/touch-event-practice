@@ -10,6 +10,12 @@ import UIKit
 
 
 class MyView1: UIView {
+  
+  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    let value = super.point(inside: point, with: event)
+    print("point", value, String(describing: type(of: self)))
+    return value
+  }
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -17,16 +23,19 @@ class MyView1: UIView {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
 class MyView2: UIView {
+  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    let value = super.point(inside: point, with: event)
+    print("point", value, String(describing: type(of: self)))
+    return value
+  }
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -34,16 +43,19 @@ class MyView2: UIView {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
 class MyView3: UIView {
+  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    let value = super.point(inside: point, with: event)
+    print("point", value, String(describing: type(of: self)))
+    return value
+  }
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -51,16 +63,19 @@ class MyView3: UIView {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
 class MyScrollView: UIScrollView {
+  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    let value = super.point(inside: point, with: event)
+    print("point", value, String(describing: type(of: self)))
+    return value
+  }
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return super.hitTest(point, with: event)
@@ -70,7 +85,6 @@ class MyScrollView: UIScrollView {
     // super.touchesを呼んでもイベントが通らないい
 //    super.touchesBegan(touches, with: event)
     superview?.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,8 +94,8 @@ class MyScrollView: UIScrollView {
 //    }
 //    super.touchesEnded(touches, with: event)
     superview?.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
+  
 //  override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
 //    return true
 //  }
@@ -107,7 +121,7 @@ class ViewController1: UIViewController {
     scrollView.panGestureRecognizer.cancelsTouchesInView = false
     scrollView.panGestureRecognizer.cancelsTouchesInView = false
     scrollView.canCancelContentTouches = false
-    
+    scrollView.alwaysBounceVertical = true
     
     view1.frame = .init(x: 100, y: 100, width: 200, height: 200)
     view1.backgroundColor = .darkGray
@@ -132,7 +146,6 @@ class ViewController1: UIViewController {
 
   }
 
-  
   @objc func tap() {
     print("tap")
   }
@@ -140,13 +153,11 @@ class ViewController1: UIViewController {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 
 }
@@ -162,12 +173,10 @@ class MyNode1: ASDisplayNode {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
@@ -176,7 +185,6 @@ class _MyView2: UIView {
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     superview?.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
@@ -187,28 +195,25 @@ class MyNode2: ASDisplayNode {
   init(value: String) {
     self.value = value
     super.init()
-//    setViewBlock { () -> UIView in
-//      _MyView2()
-//    }
+    setViewBlock { () -> UIView in
+      _MyView2()
+    }
 
   }
   
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
     return view.superview?.hitTest(point, with: event)
-//    return super.hitTest(point, with: event)
   }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     view.superview?.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
 //    super.touchesEnded(touches, with: event)
     // TODO: view.superviewはVCのViewなのにtouchイベントが届かない←hittestをsuperviewに対してしていなかった
     view.superview?.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
@@ -220,43 +225,11 @@ class MyNode3: ASDisplayNode {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
-}
-
-class MyScrollNode: ASScrollNode {
-  
-  // TODO: ここらへん全然呼ばれない
-  
-  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-    print("hittest", String(describing: type(of: self)))
-    return super.hitTest(point, with: event)
-  }
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    print("touches began", String(describing: type(of: self)))
-    // super.touchesを呼んでもイベントが通らないい
-    super.touchesBegan(touches, with: event)
-//    view.superview?.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    print("touches end", String(describing: type(of: self)))
-    if !view.isDragging {
-      view.next?.touchesEnded(touches, with: event)
-    }
-    super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
-  }
-//  override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
-//    return true
-//  }
-
 }
 
 class MyCollectionView: ASCollectionView {
@@ -267,22 +240,16 @@ class MyCollectionView: ASCollectionView {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     superview?.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     superview?.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 }
 
 class ViewController2: ASViewController<ASDisplayNode> {
 
   let view1 = MyNode1()
-  // TODO: MyNode2がcustomInitializerのときにどうするか
-//  let view2 = MyNode2 { () -> UIView in
-//    _MyView2()
-//  }
   let view2 = MyNode2(value: "hoge")
   let view3 = MyNode3()
 
@@ -303,6 +270,7 @@ class ViewController2: ASViewController<ASDisplayNode> {
     scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
     scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
     scrollNode.view.canCancelContentTouches = false
+    scrollNode.view.alwaysBounceVertical = true
 
     view1.frame = .init(x: 100, y: 100, width: 200, height: 200)
     view1.backgroundColor = .darkGray
@@ -330,7 +298,6 @@ class ViewController2: ASViewController<ASDisplayNode> {
     view2.view.addSubview(view3.view)
 
   }
-
   
   @objc func tap() {
     print("tap")
@@ -339,13 +306,11 @@ class ViewController2: ASViewController<ASDisplayNode> {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches began", String(describing: type(of: self)))
     super.touchesBegan(touches, with: event)
-    print("touches began", String(describing: type(of: self)))
   }
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     print("touches end", String(describing: type(of: self)))
     super.touchesEnded(touches, with: event)
-    print("touches end", String(describing: type(of: self)))
   }
 
 }
