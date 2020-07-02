@@ -3,17 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		93A9C0CFB97CDD6B7C663AEB /* Pods_touch_event_practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4115948288690C4A82647F9 /* Pods_touch_event_practice.framework */; };
 		D44331B524AA28290027F8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B424AA28290027F8FC /* AppDelegate.swift */; };
 		D44331B724AA28290027F8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B624AA28290027F8FC /* SceneDelegate.swift */; };
-		D44331B924AA28290027F8FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B824AA28290027F8FC /* ViewController.swift */; };
+		D44331B924AA28290027F8FC /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44331B824AA28290027F8FC /* ViewController1.swift */; };
 		D44331BC24AA28290027F8FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44331BA24AA28290027F8FC /* Main.storyboard */; };
 		D44331BE24AA282A0027F8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D44331BD24AA282A0027F8FC /* Assets.xcassets */; };
 		D44331C124AA282A0027F8FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44331BF24AA282A0027F8FC /* LaunchScreen.storyboard */; };
+		D4CB7A0824AD737E00F26EA0 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +24,12 @@
 		D44331B124AA28290027F8FC /* touch-event-practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "touch-event-practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44331B424AA28290027F8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D44331B624AA28290027F8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D44331B824AA28290027F8FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D44331B824AA28290027F8FC /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		D44331BB24AA28290027F8FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D44331BD24AA282A0027F8FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D44331C024AA282A0027F8FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D44331C224AA282A0027F8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +75,8 @@
 			children = (
 				D44331B424AA28290027F8FC /* AppDelegate.swift */,
 				D44331B624AA28290027F8FC /* SceneDelegate.swift */,
-				D44331B824AA28290027F8FC /* ViewController.swift */,
+				D44331B824AA28290027F8FC /* ViewController1.swift */,
+				D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */,
 				D44331BA24AA28290027F8FC /* Main.storyboard */,
 				D44331BD24AA282A0027F8FC /* Assets.xcassets */,
 				D44331BF24AA282A0027F8FC /* LaunchScreen.storyboard */,
@@ -88,7 +91,6 @@
 				AC080105AC52A9591C362B5C /* Pods-touch-event-practice.debug.xcconfig */,
 				49723FE1CD68D3CE675C0D62 /* Pods-touch-event-practice.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,7 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44331B924AA28290027F8FC /* ViewController.swift in Sources */,
+				D44331B924AA28290027F8FC /* ViewController1.swift in Sources */,
+				D4CB7A0824AD737E00F26EA0 /* ViewController2.swift in Sources */,
 				D44331B524AA28290027F8FC /* AppDelegate.swift in Sources */,
 				D44331B724AA28290027F8FC /* SceneDelegate.swift in Sources */,
 			);
