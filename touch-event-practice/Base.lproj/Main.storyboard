@@ -51,11 +51,28 @@
                     <connections>
                         <segue destination="OoW-Fq-usF" kind="relationship" relationship="viewControllers" id="GIn-mX-tvT"/>
                         <segue destination="C2t-bF-aul" kind="relationship" relationship="viewControllers" id="Kf9-mq-ub8"/>
+                        <segue destination="y9J-Ac-RhU" kind="relationship" relationship="viewControllers" id="QO1-6I-5gp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Brl-Pb-NBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="804" y="190"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Yv5-qa-G4T">
+            <objects>
+                <viewController id="y9J-Ac-RhU" customClass="ViewController3" customModule="touch_event_practice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6dD-xU-pgl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fNt-uy-fbB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="FU9-eo-sLQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H0y-Ud-bQn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2139" y="984"/>
         </scene>
     </scenes>
 </document>

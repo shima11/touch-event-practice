@@ -29,7 +29,6 @@ class MyNode1: ASDisplayNode {
   }
 }
 
-
 class _MyView2: UIView {
   override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
     let value = super.point(inside: point, with: event)
@@ -135,6 +134,12 @@ class MyCollectionView: ASCollectionView {
 
 class ViewController2: ASViewController<ASDisplayNode> {
 
+  // こちらだとうまくいかなくて（VCまでtouchイベントがとどかない）
+//  let view1 = MyNode1()
+//  let view2 = MyNode2()
+//  let view3 = MyNode3()
+
+  // こちらだとうまくいく（VCまでtouchイベントが届く）
   let view1 = MyNode1 { () -> UIView in
     MyView1()
   }
