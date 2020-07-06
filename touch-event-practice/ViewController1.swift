@@ -50,6 +50,7 @@ class MyView2: UIView {
     return value
   }
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
     let view = super.hitTest(point, with: event)
     if let view = view {
       print("hittest", String(describing: type(of: self)), String(describing: type(of: view)))
