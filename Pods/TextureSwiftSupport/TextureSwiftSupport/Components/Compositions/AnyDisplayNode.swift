@@ -41,7 +41,7 @@ public typealias FunctionalDisplayNode = AnyDisplayNode
  If you need to inject specific props into AnyDisplayNode, you can use `AnyPropsDisplayNode`.
  However, this does not affect increasing binary size effectively because it emits symbols of each generic parameter.
  */
-public class AnyDisplayNode: SafeAreaDisplayNode {
+open class AnyDisplayNode: SafeAreaDisplayNode {
   
   private let retainItems: [Any]
   

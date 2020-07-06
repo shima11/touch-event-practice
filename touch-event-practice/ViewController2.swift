@@ -8,6 +8,7 @@
 
 import UIKit
 import AsyncDisplayKit
+import TextureSwiftSupport
 
 class MyNode1: ASDisplayNode {
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -134,7 +135,15 @@ class MyCollectionView: ASCollectionView {
   }
 }
 
-class ViewController2: ASViewController<ASDisplayNode> {
+class _AnyDisplayNode: AnyDisplayNode {
+
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let view = super.hitTest(point, with: event)
+    return view
+  }
+}
+
+class ViewController2: UIViewController {
 
   // こちらだとうまくいかなくて（VCまでtouchイベントがとどかない）
 //  let view1 = MyNode1()
@@ -152,54 +161,84 @@ class ViewController2: ASViewController<ASDisplayNode> {
     MyView3()
   }
 
-  let scrollNode = ASCollectionNode { () -> UIView in
-    MyCollectionView(frame: .zero, collectionViewLayout: .init())
-  }
-  
+  var scrollNode: VerticalScrollWrapperNode<ASDisplayNode>!
+
   override func viewDidLoad() {
+
+    let _body = _AnyDisplayNode { _, _ in
+      LayoutSpec {
+        self.view2
+      }
+    }
+
+    scrollNode = VerticalScrollWrapperNode<ASDisplayNode> {
+      AnyDisplayNode { _, _ in
+        LayoutSpec {
+          ZStackLayout {
+            self.view1
+              .preferredSize(.init(width: 200, height: 200))
+            _body
+              .preferredSize(.init(width: 200, height: 200))
+            self.view3
+              .preferredSize(.init(width: 100, height: 100))
+          }
+        }
+      }
+    }
+
     super.viewDidLoad()
 
-    title = "Node"
-    
-    scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 300)
-    scrollNode.view.backgroundColor = .lightGray
-//    view.addSubview(scrollNode.view)
     view.addSubnode(scrollNode)
-    
-    scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
-    scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
-    scrollNode.view.canCancelContentTouches = false
-    scrollNode.view.alwaysBounceVertical = true
 
-    view1.frame = .init(x: 100, y: 100, width: 200, height: 200)
+    scrollNode.frame = view.bounds
+//
+//    title = "Node"
+//
+//    scrollNode.view.frame = .init(x: 100, y: 100, width: 300, height: 300)
+//    scrollNode.view.backgroundColor = .lightGray
+////    view.addSubview(scrollNode.view)
+//    view.addSubnode(scrollNode)
+//
+//    scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
+//    scrollNode.view.panGestureRecognizer.cancelsTouchesInView = false
+//    scrollNode.view.canCancelContentTouches = false
+//    scrollNode.view.alwaysBounceVertical = true
+//
+//    view1.frame = .init(x: 100, y: 100, width: 200, height: 200)
     view1.backgroundColor = .darkGray
-//    view1.isLayerBacked = true // isLayerBacked = trueにするとhittestが呼ばれなくなる
-//    scrollNode.view.addSubview(view1.view)
-    
-//    scrollNode.automaticallyManagesContentSize = true
-    scrollNode.addSubnode(view1)
-    
-    view2.frame = .init(x: 100, y: 400, width: 200, height: 200)
+////    view1.isLayerBacked = true // isLayerBacked = trueにするとhittestが呼ばれなくなる
+////    scrollNode.view.addSubview(view1.view)
+//
+////    scrollNode.automaticallyManagesContentSize = true
+//    scrollNode.addSubnode(view1)
+//
+//    view2.frame = .init(x: 100, y: 400, width: 200, height: 200)
     view2.backgroundColor = .orange
-    
-    // Geesture入れるとendが呼ばれなくなる
-    let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-    // falseにするとendも呼ばれる
-    gesture.cancelsTouchesInView = false
-    view3.view.addGestureRecognizer(gesture)
-    
-//    view.addSubview(view2.view)
-    view.addSubnode(view2)
-    
-    view3.frame = .init(x: 50, y: 50, width: 100, height: 100)
+//
+//    // Geesture入れるとendが呼ばれなくなる
+//    let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+//    // falseにするとendも呼ばれる
+//    gesture.cancelsTouchesInView = false
+//    view3.view.addGestureRecognizer(gesture)
+//
+////    view.addSubview(view2.view)
+//    view.addSubnode(view2)
+//
+//    view3.frame = .init(x: 50, y: 50, width: 100, height: 100)
     view3.backgroundColor = .green
-    
-    view2.view.addSubview(view3.view)
-
-    print("responder:view1:", view1.view.responderChain())
-    print("responder:view2:", view2.view.responderChain())
-    print("responder:view3:", view3.view.responderChain())
+//
+//    view2.view.addSubview(view3.view)
+//
+//    print("responder:view1:", view1.view.responderChain())
+//    print("responder:view2:", view2.view.responderChain())
+//    print("responder:view3:", view3.view.responderChain())
   }
+
+//  override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+//    LayoutSpec {
+//      scrollNode
+//    }
+//  }
   
   @objc func tap() {
     print("tap")
