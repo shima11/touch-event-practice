@@ -143,6 +143,13 @@ class _AnyDisplayNode: AnyDisplayNode {
   }
 }
 
+class _HitView: UIView {
+
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    super.hitTest(point, with: event)
+  }
+}
+
 class ViewController2: UIViewController {
 
   // こちらだとうまくいかなくて（VCまでtouchイベントがとどかない）
@@ -162,6 +169,11 @@ class ViewController2: UIViewController {
   }
 
   var scrollNode: VerticalScrollWrapperNode<ASDisplayNode>!
+
+  override func loadView() {
+    self.view = _HitView()
+    self.view.frame = UIScreen.main.bounds
+  }
 
   override func viewDidLoad() {
 
