@@ -6,15 +6,27 @@ import TextureSwiftSupport
 
 public final class VerticalScrollWrapperNode<Content: ASDisplayNode>: SafeAreaDisplayNode {
 
-  public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-    super.hitTest(point, with: event)
+  override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    let view = super.hitTest(point, with: event)
+    if let view = view {
+      print("hittest", String(describing: type(of: self)), String(describing: type(of: view)))
+    } else {
+      print("hittest", String(describing: type(of: self)), "nil")
+    }
+    return view
   }
   
+  override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    super.touchesEnded(touches, with: event)
+  }
+
   public override var supportsLayerBacking: Bool {
     false
   }
   
-  private let scrollNode = ASScrollNode()
+  private let scrollNode = _ASScrollNode()
   public let content: Content
     
   public init(content: () -> Content) {
@@ -64,5 +76,4 @@ public final class VerticalScrollWrapperNode<Content: ASDisplayNode>: SafeAreaDi
     super.setNeedsLayout()
     content.setNeedsLayout()
   }
-  
 }

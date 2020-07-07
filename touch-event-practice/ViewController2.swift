@@ -72,7 +72,6 @@ class MyNode2: ASDisplayNode {
   
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
     print("hittest", String(describing: type(of: self)))
-
     let view = super.hitTest(point, with: event)
     if let view = view {
       print("hittest", String(describing: type(of: self)), String(describing: type(of: view)))
@@ -135,6 +134,25 @@ class MyCollectionView: ASCollectionView {
   }
 }
 
+class _ASScrollNode: ASScrollNode {
+  
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    print("hittest", String(describing: type(of: self)))
+    let view = super.hitTest(point, with: event)
+    if let view = view {
+      print("hittest", String(describing: type(of: self)), String(describing: type(of: view)))
+    } else {
+      print("hittest", String(describing: type(of: self)), "nil")
+    }
+    return view
+  }
+
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    print("touches end", String(describing: type(of: self)))
+    super.touchesEnded(touches, with: event)
+  }
+}
+
 class _AnyDisplayNode: AnyDisplayNode {
 
   override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -153,27 +171,27 @@ class _HitView: UIView {
 class ViewController2: UIViewController {
 
   // こちらだとうまくいかなくて（VCまでtouchイベントがとどかない）
-//  let view1 = MyNode1()
-//  let view2 = MyNode2()
-//  let view3 = MyNode3()
+  let view1 = MyNode1()
+  let view2 = MyNode2()
+  let view3 = MyNode3()
 
   // こちらだとうまくいく（VCまでtouchイベントが届く）
-  let view1 = MyNode1 { () -> UIView in
-    MyView1()
-  }
-  let view2 = MyNode2 { () -> UIView in
-    MyView2()
-  }
-  let view3 = MyNode3 { () -> UIView in
-    MyView3()
-  }
+//  let view1 = MyNode1 { () -> UIView in
+//    MyView1()
+//  }
+//  let view2 = MyNode2 { () -> UIView in
+//    MyView2()
+//  }
+//  let view3 = MyNode3 { () -> UIView in
+//    MyView3()
+//  }
 
   var scrollNode: VerticalScrollWrapperNode<ASDisplayNode>!
 
-  override func loadView() {
-    self.view = _HitView()
-    self.view.frame = UIScreen.main.bounds
-  }
+//  override func loadView() {
+//    self.view = _HitView()
+//    self.view.frame = UIScreen.main.bounds
+//  }
 
   override func viewDidLoad() {
 
