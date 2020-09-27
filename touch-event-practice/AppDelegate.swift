@@ -11,10 +11,24 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  var window: UIWindow?
 
+//  func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//    self.window = TouchDetectWindow(frame: UIScreen.main.bounds)
+//    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "root_tabbar_controller")
+//    self.window?.rootViewController = controller
+//    self.window?.makeKeyAndVisible()
+//    return true
+//  }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+
+//    self.window = TouchDetectWindow(frame: UIScreen.main.bounds)
+//    let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "root_tabbar_controller")
+//    self.window?.rootViewController = controller
+//    self.window?.makeKeyAndVisible()
+
     return true
   }
 
