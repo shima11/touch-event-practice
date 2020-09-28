@@ -70,6 +70,21 @@ class MyView2: UIView {
 }
 
 class MyView3: UIView {
+
+  override func layoutSubviews() {
+    super.layoutSubviews()
+
+    var responder: UIResponder? = self
+
+    while responder != nil {
+      let nextResponder = responder?.next
+      if let container = nextResponder as? TouchDetectWindow {
+        container.tooltipView = self
+      }
+      responder = nextResponder
+    }
+  }
+
   override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
     let value = super.point(inside: point, with: event)
     print("point", value, String(describing: type(of: self)))
@@ -168,7 +183,7 @@ class ViewController1: UIViewController {
     
     view.addSubview(view2)
     
-    view3.frame = .init(x: 50, y: 50, width: 100, height: 100)
+    view3.frame = .init(x: -100, y: 50, width: 100, height: 100)
     view3.backgroundColor = .green
     
     view2.addSubview(view3)

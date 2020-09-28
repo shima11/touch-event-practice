@@ -10,6 +10,7 @@ import UIKit
 
 final class TouchDetectWindow: UIWindow {
 
+  var tooltipView: UIView? = nil
 
   override init(windowScene: UIWindowScene) {
     super.init(windowScene: windowScene)
@@ -28,6 +29,21 @@ final class TouchDetectWindow: UIWindow {
       print("hittest window nil")
     }
     // TODO: ここでTooltipのタッチ判定を行ってTooltipをタッチしていたらnilを返すようにしたらTooltipの後ろのタップが発火しないかも
+    print("xxx", event?.type.rawValue, event?.subtype.rawValue, point)
+
+    if let tooltipView = tooltipView {
+
+      var isTouchTooltip = false
+
+      let rect = tooltipView.convert(tooltipView.bounds, to: self)
+      if rect.contains(point) {
+        isTouchTooltip = true
+      }
+
+      if isTouchTooltip {
+        return tooltipView
+      }
+    }
 
     return view
   }
