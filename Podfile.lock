@@ -1,18 +1,18 @@
 PODS:
-  - GlossButtonNode (1.2.0):
-    - Texture/Core (~> 2.8)
+  - GlossButtonNode (2.1.0):
+    - Texture/Core (~> 3)
     - TextureSwiftSupport
-  - Reveal-SDK (26)
-  - Texture/Core (2.8.1)
-  - TextureBridging (1.3.0):
-    - Texture/Core (~> 2.8.1)
-  - TextureSwiftSupport (1.8.0):
-    - Texture/Core (~> 2.8)
+  - Reveal-SDK (27)
+  - Texture/Core (3.0.0)
+  - TextureBridging (2.0.0):
+    - Texture/Core (~> 3)
+  - TextureSwiftSupport (3.2.0):
+    - Texture/Core (~> 3)
 
 DEPENDENCIES:
   - GlossButtonNode
   - Reveal-SDK
-  - "Texture/Core (from `git@github.com:TextureGroup/Texture`, commit `b59c6d07e15ebdb40fdd8fb40e4ce7f1766e8ca2`)"
+  - Texture/Core
   - TextureBridging
   - TextureSwiftSupport
 
@@ -20,26 +20,17 @@ SPEC REPOS:
   trunk:
     - GlossButtonNode
     - Reveal-SDK
+    - Texture
     - TextureBridging
     - TextureSwiftSupport
 
-EXTERNAL SOURCES:
-  Texture:
-    :commit: b59c6d07e15ebdb40fdd8fb40e4ce7f1766e8ca2
-    :git: "git@github.com:TextureGroup/Texture"
-
-CHECKOUT OPTIONS:
-  Texture:
-    :commit: b59c6d07e15ebdb40fdd8fb40e4ce7f1766e8ca2
-    :git: "git@github.com:TextureGroup/Texture"
-
 SPEC CHECKSUMS:
-  GlossButtonNode: 20b302c4d1bb0765487e282a5a19933c61256f78
-  Reveal-SDK: 5f94f14aff3d5f2a49f246edcd266fa4472679e9
-  Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
-  TextureBridging: 1012e667a3ffbae42bde3209da254c0ffc526df2
-  TextureSwiftSupport: d41267636ebdc18555f83bb7a38a0170c8d59364
+  GlossButtonNode: 0b1471447cb4cebc8a959bbca574247ff6b0592b
+  Reveal-SDK: 306e2880395ee396f5a8b4c485c3a86dd19866c7
+  Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
+  TextureBridging: ce323b0c42f036df7efb8a41f758c52d673cf3bf
+  TextureSwiftSupport: 2dfc0320e954f549d941f630843b097ab2abdec2
 
-PODFILE CHECKSUM: 35007b8122001d3376b75060cb2bc3b57153ff4a
+PODFILE CHECKSUM: 9037dc9c614a37080aad73e3b282861d22b9ad36
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

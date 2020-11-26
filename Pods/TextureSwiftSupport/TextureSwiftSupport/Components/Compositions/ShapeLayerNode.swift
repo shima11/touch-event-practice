@@ -35,8 +35,14 @@ public final class ShapeLayerNode : ASDisplayNode, ShapeDisplaying {
 
   private let updateClosure: Update
 
+  public var usesInnerBorder: Bool = true {
+    didSet {
+      setNeedsLayout()
+    }
+  }
+
   public override var supportsLayerBacking: Bool {
-    return false
+    return true
   }
   
   public var shapeLayer: CAShapeLayer {
@@ -57,6 +63,11 @@ public final class ShapeLayerNode : ASDisplayNode, ShapeDisplaying {
     }
     set {
       ASPerformBlockOnMainThread {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        defer {
+          CATransaction.commit()
+        }
         self.backingNode.layer.strokeColor = newValue?.cgColor
       }
     }
@@ -68,6 +79,11 @@ public final class ShapeLayerNode : ASDisplayNode, ShapeDisplaying {
     }
     set {
       ASPerformBlockOnMainThread {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        defer {
+          CATransaction.commit()
+        }
         self.backingNode.layer.fillColor = newValue?.cgColor
       }
     }
@@ -75,18 +91,30 @@ public final class ShapeLayerNode : ASDisplayNode, ShapeDisplaying {
   
   public override func layout() {
     super.layout()
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
+    defer {
+      CATransaction.commit()
+    }
     backingNode.layer.path = updateClosure(backingNode.bounds).cgPath
   }
   
   public override var frame: CGRect {
     didSet {
       ASPerformBlockOnMainThread {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        defer {
+          CATransaction.commit()
+        }
         self.backingNode.layer.path = self.updateClosure(self.backingNode.bounds).cgPath
       }
     }
   }
 
-  public init(update: @escaping Update) {
+  public init(
+    update: @escaping Update
+  ) {
     self.updateClosure = update
     super.init()
     backgroundColor = .clear
@@ -96,19 +124,27 @@ public final class ShapeLayerNode : ASDisplayNode, ShapeDisplaying {
     automaticallyManagesSubnodes = true
   }
 
+  public override func didLoad() {
+    backingNode.layer.fillColor = UIColor.clear.cgColor
+  }
+
   public override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-    
-    ASWrapperLayoutSpec(
-      layoutElement: ASInsetLayoutSpec(
-        insets: .init(
-          top: shapeLineWidth / 2,
-          left: shapeLineWidth / 2,
-          bottom: shapeLineWidth / 2,
-          right: shapeLineWidth / 2
-        ),
-        child: backingNode
+
+    if usesInnerBorder {
+      return ASWrapperLayoutSpec(
+        layoutElement: ASInsetLayoutSpec(
+          insets: .init(
+            top: shapeLineWidth / 2,
+            left: shapeLineWidth / 2,
+            bottom: shapeLineWidth / 2,
+            right: shapeLineWidth / 2
+          ),
+          child: backingNode
+        )
       )
-    )
+    } else {
+      return ASWrapperLayoutSpec(layoutElement: backingNode)
+    }
     
   }
 

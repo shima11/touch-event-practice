@@ -27,7 +27,7 @@ class TrackingNode: ASDisplayNode {
   }
 }
 
-class ViewController3: ASViewController<ASDisplayNode> {
+class ViewController3: ASDKViewController<ASDisplayNode> {
 
   let view1 = NormalNode()
   let view2 = TrackingNode()

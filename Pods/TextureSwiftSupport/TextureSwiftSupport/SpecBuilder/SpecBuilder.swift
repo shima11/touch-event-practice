@@ -75,23 +75,17 @@ public struct Modifier: ModifierType {
   public static func buildBlock<Content>(_ content: Content) -> Content where Content : _ASLayoutElementType {
     content
   }
-  
-  public static func buildBlock(_ content: _ASLayoutElementType...) -> MultiLayout {
-    MultiLayout(content)
-  }
-  
+
+  @_disfavoredOverload
   public static func buildBlock(_ content: _ASLayoutElementType?...) -> MultiLayout {
     MultiLayout(content.compactMap { $0 })
   }
-  
+
+  @_disfavoredOverload
   public static func buildBlock<C: Collection>(_ contents: C) -> MultiLayout where C.Element : _ASLayoutElementType {
     MultiLayout(Array(contents))
   }
-  
-  public static func buildIf<Content>(_ content: Content) -> Content where Content : _ASLayoutElementType  {
-    content
-  }
-    
+
   public static func buildIf<Content>(_ content: Content?) -> Content? where Content : _ASLayoutElementType  {
     content
   }
@@ -121,6 +115,13 @@ extension ASLayoutSpec : _ASLayoutElementType {
   }
 }
 
+extension Optional: _ASLayoutElementType where Wrapped : _ASLayoutElementType {
+
+  public func make() -> [ASLayoutElement] {
+    map { $0.make() } ?? []
+  }
+}
+
 ///
 /// - Author: TetureSwiftSupport
 public struct ConditionalLayout<TrueContent, FalseContent> : _ASLayoutElementType where TrueContent : _ASLayoutElementType, FalseContent : _ASLayoutElementType {
@@ -140,13 +141,25 @@ public struct ConditionalLayout<TrueContent, FalseContent> : _ASLayoutElementTyp
   }
 }
 
+/// A layout spec that is entry point to describe layout DSL
 ///
 /// - Author: TetureSwiftSupport
-public final class LayoutSpec<Content> : ASWrapperLayoutSpec where Content : _ASLayoutElementType {
+public class LayoutSpec<Content>: ASWrapperLayoutSpec where Content : _ASLayoutElementType {
   
   public init(@ASLayoutSpecBuilder _ content: () -> Content) {
     super.init(layoutElements: content().make())
   }
+}
+
+/// A layout spec that is entry point to describe layout DSL
+///
+/// - Author: TetureSwiftSupport
+public final class AnyLayoutSpec: ASWrapperLayoutSpec {
+
+  public init<Content: _ASLayoutElementType>(@ASLayoutSpecBuilder _ content: () -> Content) {
+    super.init(layoutElements: content().make())
+  }
+
 }
 
 ///
@@ -168,14 +181,38 @@ public struct MultiLayout : _ASLayoutElementType {
 /// - Author: TetureSwiftSupport
 public struct AnyLayout : _ASLayoutElementType {
   
-  public let content: _ASLayoutElementType
-  
-  public init(@ASLayoutSpecBuilder _ content: () -> _ASLayoutElementType) {
+  public let content: _ASLayoutElementType?
+
+  @available(*, deprecated, message: "Use init(_: ASLayoutElement?)")
+  @_disfavoredOverload
+  public init(_ element: () -> ASLayoutElement?) {
+    if let element = element() {
+      self.content = ASWrapperLayoutSpec(layoutElement: element)
+    } else {
+      self.content = ASLayoutSpec()
+    }
+  }
+
+  @available(*, deprecated, message: "Use init(_: _ASLayoutElementType)")
+  public init(_ content: () -> _ASLayoutElementType) {
     self.content = content()
+  }
+
+  @_disfavoredOverload
+  public init(_ element: ASLayoutElement?) {
+    if let element = element {
+      self.content = ASWrapperLayoutSpec(layoutElement: element)
+    } else {
+      self.content = ASLayoutSpec()
+    }
+  }
+
+  public init(_ content: _ASLayoutElementType?) {
+    self.content = content
   }
   
   public func make() -> [ASLayoutElement] {
-    content.make()
+    content?.make() ?? []
   }
 }
 
@@ -505,6 +542,30 @@ public struct AspectRatioLayout<Content> : _ASLayoutElementType where Content : 
     ]
   }
   
+}
+
+///
+/// - Author: TetureSwiftSupport
+public struct SpacerLayout : _ASLayoutElementType {
+
+  public let minLength: CGFloat
+  public let flexGrow: CGFloat
+
+  public init(minLength: CGFloat = 0, flexGrow: CGFloat = 1) {
+    self.minLength = minLength
+    self.flexGrow = flexGrow
+  }
+
+  public func make() -> [ASLayoutElement] {
+    [
+      {
+        let spec = ASLayoutSpec()
+        spec.style.spacingBefore = minLength
+        spec.style.flexGrow = flexGrow
+        return spec
+      }()
+    ]
+  }
 }
 
 ///

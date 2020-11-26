@@ -16,6 +16,7 @@
 		D44331BC24AA28290027F8FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44331BA24AA28290027F8FC /* Main.storyboard */; };
 		D44331BE24AA282A0027F8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D44331BD24AA282A0027F8FC /* Assets.xcassets */; };
 		D44331C124AA282A0027F8FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44331BF24AA282A0027F8FC /* LaunchScreen.storyboard */; };
+		D47F0742256E1BC9007513EB /* ViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47F0741256E1BC9007513EB /* ViewController4.swift */; };
 		D4CB7A0824AD737E00F26EA0 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */; };
 		D4CB7A0A24AEC0AA00F26EA0 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CB7A0924AEC0AA00F26EA0 /* ViewController3.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		D44331BD24AA282A0027F8FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D44331C024AA282A0027F8FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D44331C224AA282A0027F8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D47F0741256E1BC9007513EB /* ViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController4.swift; sourceTree = "<group>"; };
 		D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		D4CB7A0924AEC0AA00F26EA0 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				D44331B824AA28290027F8FC /* ViewController1.swift */,
 				D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */,
 				D4CB7A0924AEC0AA00F26EA0 /* ViewController3.swift */,
+				D47F0741256E1BC9007513EB /* ViewController4.swift */,
 				4B00E66424B2E192009F6C7F /* VerticalScrollWrapperNode.swift */,
 				D44331BA24AA28290027F8FC /* Main.storyboard */,
 				D44331BD24AA282A0027F8FC /* Assets.xcassets */,
@@ -111,6 +114,7 @@
 			buildConfigurationList = D44331C524AA282A0027F8FC /* Build configuration list for PBXNativeTarget "touch-event-practice" */;
 			buildPhases = (
 				487C3DA416F0BECA84D5C947 /* [CP] Check Pods Manifest.lock */,
+				6E31D449F36B3F2CCF2D9642 /* [CP] Prepare Artifacts */,
 				D44331AD24AA28290027F8FC /* Sources */,
 				D44331AE24AA28290027F8FC /* Frameworks */,
 				D44331AF24AA28290027F8FC /* Resources */,
@@ -194,6 +198,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6E31D449F36B3F2CCF2D9642 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7891BAD7A99D5CC8194EAABE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,6 +242,7 @@
 				D429BC4F24CDC85B00ACE249 /* TouchDetectWindow.swift in Sources */,
 				D4CB7A0A24AEC0AA00F26EA0 /* ViewController3.swift in Sources */,
 				D44331B924AA28290027F8FC /* ViewController1.swift in Sources */,
+				D47F0742256E1BC9007513EB /* ViewController4.swift in Sources */,
 				D4CB7A0824AD737E00F26EA0 /* ViewController2.swift in Sources */,
 				D44331B524AA28290027F8FC /* AppDelegate.swift in Sources */,
 				4B00E66524B2E192009F6C7F /* VerticalScrollWrapperNode.swift in Sources */,

@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice-frameworks.sh
+${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt
 ${BUILT_PRODUCTS_DIR}/GlossButtonNode/GlossButtonNode.framework
 ${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework
 ${BUILT_PRODUCTS_DIR}/TextureBridging/TextureBridging.framework
