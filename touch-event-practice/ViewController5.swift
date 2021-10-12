@@ -13,6 +13,20 @@ import UIKit
 class ViewController5: UIViewController {
 
 
+  class MyButton: UIButton {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+      print(String(describing: Self.self), "touches began")
+      super.touchesBegan(touches, with: event)
+    }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+      print(String(describing: Self.self), "touches cancelled")
+      super.touchesCancelled(touches, with: event)
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+      print(String(describing: Self.self), "touches ended")
+      super.touchesEnded(touches, with: event)
+    }
+  }
   class MyView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
       print(String(describing: Self.self), "touches began")
@@ -28,7 +42,7 @@ class ViewController5: UIViewController {
     }
   }
 
-  let button = UIButton()
+  let button = MyButton()
   let view1 = MyView()
 
   override func viewDidLoad() {
@@ -56,9 +70,9 @@ class ViewController5: UIViewController {
     // gestureを追加するとsubviewにあるviewへのtouchはcancelされる（デフォルトだとcancelsTouchesInView=trueなので）
     // cancelsTouchesInView=falseにするとsubviewへのtouchもcancelされず呼ばれるようになる。
     let gesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
-  // falseにするとボタンをタップした時でもviewのtouchイベントが発火するようになる（trueの時は発火しなかった）
-    // つまりfalseにするとボタンのタップも発火するしgestureのdidTapも発火する（trueはボタンしか反応しない）
-    gesture.cancelsTouchesInView = false
+    // falseにするとボタンのタップも発火するしgestureのdidTapも発火する（trueはボタンしか反応しない）
+    // UIControlをタップした時は親ViewのtouchXXXは発火しない
+//    gesture.cancelsTouchesInView = false
     view.addGestureRecognizer(gesture)
   }
 
