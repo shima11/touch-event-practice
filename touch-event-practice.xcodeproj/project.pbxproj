@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BFE99927154AF50099F1FE /* ViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFE99827154AF50099F1FE /* ViewController5.swift */; };
 		4B00E66524B2E192009F6C7F /* VerticalScrollWrapperNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B00E66424B2E192009F6C7F /* VerticalScrollWrapperNode.swift */; };
 		93A9C0CFB97CDD6B7C663AEB /* Pods_touch_event_practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4115948288690C4A82647F9 /* Pods_touch_event_practice.framework */; };
 		D429BC4F24CDC85B00ACE249 /* TouchDetectWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429BC4E24CDC85B00ACE249 /* TouchDetectWindow.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BFE99827154AF50099F1FE /* ViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController5.swift; sourceTree = "<group>"; };
 		49723FE1CD68D3CE675C0D62 /* Pods-touch-event-practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-event-practice.release.xcconfig"; path = "Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice.release.xcconfig"; sourceTree = "<group>"; };
 		4B00E66424B2E192009F6C7F /* VerticalScrollWrapperNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScrollWrapperNode.swift; sourceTree = "<group>"; };
 		AC080105AC52A9591C362B5C /* Pods-touch-event-practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-touch-event-practice.debug.xcconfig"; path = "Target Support Files/Pods-touch-event-practice/Pods-touch-event-practice.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				D4CB7A0724AD737E00F26EA0 /* ViewController2.swift */,
 				D4CB7A0924AEC0AA00F26EA0 /* ViewController3.swift */,
 				D47F0741256E1BC9007513EB /* ViewController4.swift */,
+				04BFE99827154AF50099F1FE /* ViewController5.swift */,
 				4B00E66424B2E192009F6C7F /* VerticalScrollWrapperNode.swift */,
 				D44331BA24AA28290027F8FC /* Main.storyboard */,
 				D44331BD24AA282A0027F8FC /* Assets.xcassets */,
@@ -242,6 +245,7 @@
 				D429BC4F24CDC85B00ACE249 /* TouchDetectWindow.swift in Sources */,
 				D4CB7A0A24AEC0AA00F26EA0 /* ViewController3.swift in Sources */,
 				D44331B924AA28290027F8FC /* ViewController1.swift in Sources */,
+				04BFE99927154AF50099F1FE /* ViewController5.swift in Sources */,
 				D47F0742256E1BC9007513EB /* ViewController4.swift in Sources */,
 				D4CB7A0824AD737E00F26EA0 /* ViewController2.swift in Sources */,
 				D44331B524AA28290027F8FC /* AppDelegate.swift in Sources */,

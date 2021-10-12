@@ -51,7 +51,7 @@ final class TouchDetectWindow: UIWindow {
   }
 
   override final public func sendEvent(_ event: UIEvent) {
-    print("send event")
+    print("send event", event)
     super.sendEvent(event)
 
     event.touches(for: self)?.forEach { touch in
